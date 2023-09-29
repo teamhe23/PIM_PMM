@@ -1,0 +1,60 @@
+-- Generar XML:
+1. Guardar Datos de Ejemplo
+2. Exportar
+
+-- Informe:
+1. Crear Informe
+2. Seleccionar Modelo de Datos
+3. Usar editor de informes
+4. Finalizar => Rep_Items_HE
+5. Guardar
+
+
+-- Actualizamos el archivo XML en la Integracion OIC:
+1. Desactivamos la Integracion HESA_NUEVO_PROD_PMM_QA
+2. ReadXML (editor)
+  Siguiente Siguiente Siguiente Cargamos el nuevo archivo XML
+3. Verificar PostItem
+
+
+# Cadena de Conexion
+{
+  "DB": {
+    "DataSource": "10.20.11.182:1521/HPEC01",
+    "UserID": "usr_devti",
+    "Password": "p0ch1t43000"
+  }
+}
+
+# JOB
+OIC consulta data del PMM y lo envia al cloud function del pub/sub
+#  INSERT INTO PIM_MODELO(
+#       ID_MODELO,
+#       ID_TIPO,
+#       CONTENIDO,
+#       MESSAGE_ID
+#     )
+#     VALUES(
+#       P_ID_MODELO,
+#       P_ID_TIPO,
+#       P_MODELO,
+#       P_ID_MESSAGE
+#     );
+
+HESA_NUEVO_PROD_PMM_QA (1.0)
+Solo envia texto del reporte generado al PMM mediante PUB/SUB , 
+Un RANCHER CLOUD Function Consume el PUB/SUB que inserta PIM_MODELO (tabla del PMM)
+
+
+EL JOB(hp-job-interfaz-item) LEE DEL PIM_MODELO Y LO LLEVARA A PIM_PRODUCTO y PIM_ATRITUBO (usando los SP del PKG_PIM_INTEGRACION)
+
+Si todo esta OK, crea un SKU
+si hay error, no se crea un SKU y se registra en una tabla de error
+
+Si ya se genero y se crea SKU, HPSA COMERCIALES 
+Maestro de productos, columna PRDLVLNUMBER sku
+
+OIC, 
+PMM, PIM_PRODUCTO, columna Flag procesado, indica si el producto que llego desde el OIC fue procesado o esta pendiente
+
+prdlvlchair genera cuando fue creado en PMM, diferente 0 , fue creado, 
