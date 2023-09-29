@@ -1,0 +1,27 @@
+# Confiurando el CLOUD FUNCTION
+
+1. Iniciar proyecto NODE:
+npm init -y
+
+2. Instalación de paquetes:
+
+#Variable de Entorno .env
+npm i dotenv
+
+#GCP Pub/Sub
+npm i @google-cloud/pubsub
+
+#GCP LOCAL
+#Instalar Dependencia Dev
+npm install --save-dev @google-cloud/functions-framework
+
+#1. Instalar Emulador
+https://dl.google.com/dl/cloudsdk/channels/rapid/GoogleCloudSDKInstaller.exe
+
+#2. Instalar emulador pubsub
+gcloud components install pubsub-emulator
+gcloud components update
+
+#3. Inicializar el simulador de pubsub
+gcloud beta emulators pubsub start --project=he-wms-carga --host-port=localhost:8085
+

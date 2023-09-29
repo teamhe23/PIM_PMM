@@ -1,0 +1,5 @@
+Simplifique las canalizaciones del lago de datos con nuevas suscripciones de Pub/Sub Cloud Storage NUEVO
+Ahora puede optimizar sus canales de ingesta de datos con suscripciones a Cloud Storage, lo que le permite escribir datos de transmisión sin procesar en Cloud Storage sin ninguna transformación intermedia. Para comenzar, crea una nueva suscripción de Cloud Storage para un tema de Pub/Sub.
+
+Transmite datos directamente a BigQuery con Pub/Sub
+Aproveche la suscripción a Pub/Sub BigQuery para incorporar datos sin procesar en BigQuery y acelerar el tiempo para obtener información valiosa. Comience creando una nueva suscripción de BigQuery asociada con un tema de Pub/Sub.
